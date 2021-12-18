@@ -3,7 +3,14 @@ import { Box } from "@mui/system";
 
 const App = () => {
   return (
-    <Box height="100vh" width="100vw" bgcolor="">
+    <Box
+      height="100vh"
+      width="100vw"
+      bgcolor="background.ambient"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
       Hi
     </Box>
   );
