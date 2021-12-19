@@ -1,3 +1,4 @@
+import random
 from typing import Dict, List
 
 from models.banner_reward import BannerReward
@@ -13,7 +14,16 @@ class Banner:
     def __init__(self):
         pass
 
-    def add_reward(self, reward: BannerReward, rarity: RewardRarity = RewardRarity.common):
+    def add_reward(self, reward: BannerReward, rarity: RewardRarity = RewardRarity.common) -> None:
         if rarity not in self.item_pool:
             self.item_pool[rarity] = []
         self.item_pool[rarity].extend([reward] * reward.weight)
+
+    def shuffle(self, rarity: RewardRarity) -> None:
+        if rarity not in self.item_pool:
+            return
+        random.shuffle(self.item_pool[rarity])
+
+    def shuffle_all(self) -> None:
+        for rarity in self.item_pool.keys():
+            self.shuffle(rarity)
