@@ -2,17 +2,17 @@ import json
 from os import path
 from typing import Dict
 
-STORAGE_ROOT = "storage"
-
 
 class Persistence:
     key: str
+    root: str
 
-    def __init__(self, key: str):
+    def __init__(self, key: str, root: str = "storage"):
         self.key = key
+        self.root = root
 
     def get_path(self) -> str:
-        return f"{path.join(STORAGE_ROOT, self.key).strip('.')}.json"
+        return f"{path.join(self.root, self.key).strip('.')}.json"
 
     def save_json(self, obj: Dict) -> None:
         with open(self.get_path(), "w") as file:
