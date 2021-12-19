@@ -2,6 +2,9 @@ from models.item_name import ItemName
 
 
 class BannerReward:
+    """
+    Represent one banner reward.
+    """
     name: str
     quantity: int
     weight: int
