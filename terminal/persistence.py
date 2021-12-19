@@ -1,4 +1,5 @@
 import json
+import os
 from os import path
 from typing import Dict
 
@@ -10,6 +11,11 @@ class Persistence:
     def __init__(self, key: str, root: str = "storage"):
         self.key = key
         self.root = root
+        self.create_root()
+
+    def create_root(self):
+        if not path.exists(self.root):
+            os.mkdir(self.root)
 
     def get_path(self) -> str:
         return f"{path.join(self.root, self.key).strip('.')}.json"
