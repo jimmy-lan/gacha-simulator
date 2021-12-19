@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class BannerItem(Enum):
+class ItemName(Enum):
     crystals = "Crystals"
     daily_coins = "Daily Coins"
     points = "Points"
