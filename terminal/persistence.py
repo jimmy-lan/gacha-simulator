@@ -17,3 +17,8 @@ class Persistence:
     def save_json(self, obj: Dict) -> None:
         with open(self.get_path(), "w") as file:
             json.dump(obj, file)
+
+    def read_json(self) -> Dict:
+        with open(self.get_path(), "r") as file:
+            data = json.load(file)
+        return data
