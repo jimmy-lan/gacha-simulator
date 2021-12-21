@@ -1,5 +1,5 @@
 from random import Random
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from models.banner_reward import BannerReward
 from models.reward_rarity import RewardRarity
@@ -12,8 +12,16 @@ class Banner:
     # Weight of each rarity category.
     rarity_weights: Dict[RewardRarity.value, float]
     total_rarity_weight: float
-    # Number of draws that guarantees
-    pity_draws: int
+    # A mapping where keys are reward rarity and value is the maximum
+    # number of draws that guarantees this rarity. List the highest
+    # rarity item first.
+    pity_max_draw: Optional[Dict[RewardRarity.value, int]]
+    # A mapping where keys are reward rarity and value is the number of
+    # draws when the weight of a rarity starts to increase.
+    pity_threshold: Optional[Dict[RewardRarity.value, int]]
+    # Number of consecutive draws including the latest draw that does
+    # not include a particular rarity item.
+    pity_count: Optional[Dict[RewardRarity.value, int]]
     random: Random
 
     def __init__(self, rarity_weights: Dict[RewardRarity.value, float]):
