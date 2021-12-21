@@ -21,7 +21,7 @@ class Banner:
     pity_threshold: Optional[Dict[RewardRarity.value, int]]
     # Number of consecutive draws including the latest draw that does
     # not include a particular rarity item.
-    pity_count: Optional[Dict[RewardRarity.value, int]]
+    pity_count: Dict[RewardRarity.value, int]
     random: Random
 
     def __init__(self, rarity_weights: Dict[RewardRarity.value, float]):
@@ -29,6 +29,14 @@ class Banner:
         self.random = Random()
         self.rarity_weights = rarity_weights
         self.total_rarity_weight = sum(rarity_weights.values())
+        self.pity_count = {}
+        for rarity in RewardRarity:
+            self.pity_count[rarity.value] = 0
+
+    def update_pity_count(self, latest_draw_rarity: RewardRarity.value):
+        for rarity in self.pity_count.keys():
+            self.pity_count[rarity] += 1
+        self.pity_count[latest_draw_rarity] = 0
 
     def add_reward(self, reward: BannerReward) -> None:
         if reward.rarity not in self.item_pool:
@@ -43,3 +51,10 @@ class Banner:
     def shuffle_all(self) -> None:
         for rarity in self.item_pool.keys():
             self.shuffle(rarity)
+
+    def get_weight(self, rarity: RewardRarity.value):
+        if self.pity_max_draw is None:
+            return self.rarity_weights[rarity]
+        if self.pity_threshold is None:
+            self.pity_threshold = self.pity_max_draw
+
