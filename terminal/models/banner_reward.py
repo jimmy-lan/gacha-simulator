@@ -1,4 +1,5 @@
 from models.item_name import ItemName
+from models.reward_rarity import RewardRarity
 
 
 class BannerReward:
@@ -8,8 +9,9 @@ class BannerReward:
     name: str
     quantity: int
     weight: int
+    rarity: str
 
-    def __init__(self, name: ItemName, quantity: int = 1, weight: int = 1):
+    def __init__(self, name: ItemName, quantity: int = 1, weight: int = 1, rarity: str = RewardRarity.common):
         self.name = name.value
         self.quantity = quantity
         self.weight = weight
