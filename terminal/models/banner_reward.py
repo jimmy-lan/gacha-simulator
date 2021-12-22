@@ -15,3 +15,7 @@ class BannerReward:
         self.name = name.value
         self.quantity = quantity
         self.weight = weight
+        self.rarity = rarity
+
+    def __str__(self):
+        return f"{self.name}, {self.quantity}, {self.rarity}"
