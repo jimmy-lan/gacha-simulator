@@ -8,13 +8,12 @@ from models.reward_rarity import RewardRarity
 class Banner:
     # A dictionary mapping reward rarity to an array of rewards.
     # A given reward may repeat multiple times in the list based on the weight of the reward.
-    item_pool: Dict[RewardRarity.value, List[BannerReward]]
+    reward_pool: Dict[RewardRarity.value, List[BannerReward]]
     # Weight of each rarity category.
     rarity_weights: Dict[RewardRarity.value, float]
     total_rarity_weight: float
     # A mapping where keys are reward rarity and value is the maximum
-    # number of draws that guarantees this rarity. List the highest
-    # rarity item first.
+    # number of draws that guarantees this rarity.
     pity_max_draw: Optional[Dict[RewardRarity.value, int]]
     # A mapping where keys are reward rarity and value is the number of
     # draws when the weight of a rarity starts to increase.
@@ -25,7 +24,7 @@ class Banner:
     random: Random
 
     def __init__(self, rarity_weights: Dict[RewardRarity.value, float]):
-        self.item_pool = {}
+        self.reward_pool = {}
         self.random = Random()
         self.rarity_weights = rarity_weights
         self.total_rarity_weight = sum(rarity_weights.values())
@@ -39,33 +38,50 @@ class Banner:
         self.pity_count[latest_draw_rarity] = 0
 
     def add_reward(self, reward: BannerReward) -> None:
-        if reward.rarity not in self.item_pool:
-            self.item_pool[reward.rarity] = []
-        self.item_pool[reward.rarity].extend([reward] * reward.weight)
+        if reward.rarity not in self.reward_pool:
+            self.reward_pool[reward.rarity] = []
+        self.reward_pool[reward.rarity].extend([reward] * reward.weight)
 
     def shuffle(self, rarity: RewardRarity.value) -> None:
-        if rarity not in self.item_pool:
+        if rarity not in self.reward_pool:
             return
-        self.random.shuffle(self.item_pool[rarity])
+        self.random.shuffle(self.reward_pool[rarity])
 
     def shuffle_all(self) -> None:
-        for rarity in self.item_pool.keys():
+        for rarity in self.reward_pool.keys():
             self.shuffle(rarity)
 
-    def get_extra_weight(self, rarity: RewardRarity.value):
+    def get_weight(self, rarity: RewardRarity.value) -> float:
         """
-        Get extra weight (out of self.total_rarity_weight) of a rarity based on
+        Get weight (out of self.total_rarity_weight) of a rarity based on self.rarity_weights and
         pity count and defined pity configurations.
         """
         if self.pity_max_draw is None:
-            return 0
+            return self.rarity_weights[rarity]
         if self.pity_threshold is None:
             # When no pity threshold is set, default to no probability increase.
             self.pity_threshold = self.pity_max_draw
         if self.pity_count[rarity] <= self.pity_threshold[rarity]:
-            return 0
+            return self.rarity_weights[rarity]
 
         num_draws_above_threshold = self.pity_count[rarity] - self.pity_threshold[rarity]
         weight_proportion = \
             num_draws_above_threshold / (self.pity_max_draw[rarity] - self.pity_threshold[rarity])
-        return weight_proportion * (self.total_rarity_weight - self.rarity_weights[rarity])
+        return self.rarity_weights[rarity] + \
+            weight_proportion * (self.total_rarity_weight - self.rarity_weights[rarity])
+
+    def _determine_rarity(self) -> RewardRarity:
+        for rarity in RewardRarity.__reversed__():
+            rarity_weight = self.get_weight(rarity.value)
+            if self.random.random() < rarity_weight / self.total_rarity_weight:
+                return rarity
+        return RewardRarity.common
+
+    def _select_from_rarity(self, rarity: RewardRarity) -> BannerReward:
+        pool = self.reward_pool[rarity.value]
+        item_idx = self.random.randint(0, len(pool) - 1)
+        return pool[item_idx]
+
+    def wish(self):
+        rarity = self._determine_rarity()
+        return self._select_from_rarity(rarity)
