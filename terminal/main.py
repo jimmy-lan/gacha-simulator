@@ -25,6 +25,6 @@ if __name__ == '__main__':
     banner.add_reward(BannerReward(ItemName.points, quantity=210, weight=20, rarity=RewardRarity.rare.value))
     banner.add_reward(BannerReward(ItemName.points, quantity=500, weight=100, rarity=RewardRarity.super_rare.value))
     banner.add_reward(BannerReward(ItemName.points, quantity=2888, weight=100, rarity=RewardRarity.epic.value))
-
+    banner.shuffle_all()
     for i in range(10):
         print(banner.wish())
