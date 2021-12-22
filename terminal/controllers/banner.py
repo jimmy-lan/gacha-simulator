@@ -84,4 +84,5 @@ class Banner:
 
     def wish(self):
         rarity = self._determine_rarity()
+        self.update_pity_count(rarity.value)
         return self._select_from_rarity(rarity)
