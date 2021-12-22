@@ -52,9 +52,20 @@ class Banner:
         for rarity in self.item_pool.keys():
             self.shuffle(rarity)
 
-    def get_weight(self, rarity: RewardRarity.value):
+    def get_extra_weight(self, rarity: RewardRarity.value):
+        """
+        Get extra weight (out of self.total_rarity_weight) of a rarity based on
+        pity count and defined pity configurations.
+        """
         if self.pity_max_draw is None:
-            return self.rarity_weights[rarity]
+            return 0
         if self.pity_threshold is None:
+            # When no pity threshold is set, default to no probability increase.
             self.pity_threshold = self.pity_max_draw
+        if self.pity_count[rarity] <= self.pity_threshold[rarity]:
+            return 0
 
+        num_draws_above_threshold = self.pity_count[rarity] - self.pity_threshold[rarity]
+        weight_proportion = \
+            num_draws_above_threshold / (self.pity_max_draw[rarity] - self.pity_threshold[rarity])
+        return weight_proportion * (self.total_rarity_weight - self.rarity_weights[rarity])
