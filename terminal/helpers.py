@@ -9,6 +9,7 @@ from models.storage_key import StorageKey
 def save_banner(banner: Banner) -> None:
     pass
 
+
 def read_banner(banner: Banner) -> None:
     """
     Read information from disk and set banner in-place.
