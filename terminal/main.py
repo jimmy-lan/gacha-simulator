@@ -2,6 +2,9 @@ from controllers.banner import Banner
 from models.banner_reward import BannerReward
 from models.item_name import ItemName
 from models.reward_rarity import RewardRarity
+from colorama import init
+
+init(autoreset=True)
 
 if __name__ == '__main__':
     banner = Banner({
