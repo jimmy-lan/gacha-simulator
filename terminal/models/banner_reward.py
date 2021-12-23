@@ -1,3 +1,4 @@
+from constants.rarity_colors import RARITY_COLORS
 from models.item_name import ItemName
 from models.reward_rarity import RewardRarity
 
@@ -18,4 +19,4 @@ class BannerReward:
         self.rarity = rarity
 
     def __str__(self):
-        return f"{self.name}, {self.quantity}, {self.rarity}"
+        return RARITY_COLORS[self.rarity] + f"{self.name} * {self.quantity} ({self.rarity})"
