@@ -7,3 +7,10 @@ RARITY_WEIGHTS = {
     RewardRarity.super_rare.value: 9.4,
     RewardRarity.epic.value: 0.6
 }
+
+# Determine the maximum number of draws (wishes) needed to get an item of
+# the corresponding rarity.
+PITY_MAX_DRAW = {
+    RewardRarity.epic.value: 90,
+    RewardRarity.super_rare.value: 10
+}
