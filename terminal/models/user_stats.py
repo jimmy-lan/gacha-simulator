@@ -8,3 +8,20 @@ class UserStats:
     # Mapping item name to quantities.
     properties: Dict[ItemName, float]
     wish_history: List[BannerReward]
+
+    def __init__(self):
+        self.wish_history = []
+        self.properties = {}
+        self.audit_properties()
+
+    def audit_properties(self):
+        item_names = set([item_name.value for item_name in ItemName])
+        invalid_keys = []
+        for key in self.properties:
+            if key not in item_names:
+                invalid_keys.append(key)
+        for key in invalid_keys:
+            del self.properties[key]
+        for item_name in item_names:
+            if item_name not in self.properties:
+                self.properties[item_name] = 0
