@@ -33,5 +33,5 @@ def create_banner() -> Banner:
         for item_name, quantity, weight in BANNER_REWARDS[rarity]:
             reward = BannerReward(item_name, quantity=quantity, weight=weight, rarity=rarity)
             banner.add_reward(reward)
-
+    read_banner(banner)
     return banner
