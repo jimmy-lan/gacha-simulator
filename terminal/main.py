@@ -1,4 +1,5 @@
 from controllers.banner import Banner
+from helpers import create_banner
 from models.banner_reward import BannerReward
 from models.item_name import ItemName
 from models.reward_rarity import RewardRarity
@@ -7,28 +8,7 @@ from colorama import init
 init(autoreset=True)
 
 if __name__ == '__main__':
-    banner = Banner({
-        RewardRarity.common.value: 60,
-        RewardRarity.rare.value: 30,
-        RewardRarity.super_rare.value: 9.4,
-        RewardRarity.epic.value: 0.6
-    })
-    banner.pity_max_draw = {
-        RewardRarity.epic.value: 90,
-        RewardRarity.super_rare.value: 10
-    }
-    banner.pity_threshold = {
-        RewardRarity.epic.value: 67,
-        RewardRarity.super_rare.value: 8
-    }
-    banner.add_reward(BannerReward(ItemName.points, quantity=60, weight=80, rarity=RewardRarity.common.value))
-    banner.add_reward(BannerReward(ItemName.points, quantity=90, weight=20, rarity=RewardRarity.common.value))
-    banner.add_reward(BannerReward(ItemName.points, quantity=150, weight=50, rarity=RewardRarity.rare.value))
-    banner.add_reward(BannerReward(ItemName.points, quantity=180, weight=30, rarity=RewardRarity.rare.value))
-    banner.add_reward(BannerReward(ItemName.points, quantity=210, weight=20, rarity=RewardRarity.rare.value))
-    banner.add_reward(BannerReward(ItemName.points, quantity=500, weight=100, rarity=RewardRarity.super_rare.value))
-    banner.add_reward(BannerReward(ItemName.points, quantity=2888, weight=100, rarity=RewardRarity.epic.value))
-    banner.shuffle_all()
+    banner = create_banner()
 
     count = {
         RewardRarity.epic.value: 0,
