@@ -29,8 +29,19 @@ class Banner:
         self.rarity_weights = rarity_weights
         self.total_rarity_weight = sum(rarity_weights.values())
         self.pity_count = {}
-        for rarity in RewardRarity:
-            self.pity_count[rarity.value] = 0
+        self.audit_pity_count()
+
+    def audit_pity_count(self):
+        rarities = set([rarity.value for rarity in RewardRarity])
+        invalid_keys = []
+        for key in self.pity_count:
+            if key not in rarities:
+                invalid_keys.append(key)
+        for key in invalid_keys:
+            del self.pity_count[key]
+        for rarity in rarities:
+            if rarity not in self.pity_count:
+                self.pity_count[rarity] = 0
 
     def update_pity_count(self, latest_draw_rarity: str):
         for rarity in self.pity_count.keys():
