@@ -7,7 +7,10 @@ from models.storage_key import StorageKey
 
 
 def save_banner(banner: Banner) -> None:
-    Persistence(StorageKey.banner.value).save_json(vars(banner))
+    """
+    Save banner to disk.
+    """
+    Persistence(StorageKey.banner.value).save_json(banner.pity_count)
 
 
 def read_banner(banner: Banner) -> None:
