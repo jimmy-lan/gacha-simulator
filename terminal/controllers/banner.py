@@ -34,6 +34,8 @@ class Banner:
     def audit_pity_count(self):
         rarities = set([rarity.value for rarity in RewardRarity])
         invalid_keys = []
+        if type(self.pity_count) is not dict:
+            self.pity_count = {}
         for key in self.pity_count:
             if key not in rarities:
                 invalid_keys.append(key)
