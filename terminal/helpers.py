@@ -14,7 +14,9 @@ def read_banner(banner: Banner) -> None:
     """
     Read information from disk and set banner in-place.
     """
-    pass
+    pity_count = Persistence(StorageKey.banner.value).read_json()
+    banner.pity_count = pity_count
+    banner.audit_pity_count()
 
 
 def create_banner() -> Banner:
