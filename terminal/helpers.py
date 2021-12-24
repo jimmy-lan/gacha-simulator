@@ -17,7 +17,11 @@ def read_banner(banner: Banner) -> None:
     """
     Read information from disk and set banner in-place.
     """
-    pity_count = Persistence(StorageKey.banner.value).read_json()
+    pity_count = {}
+    try:
+        pity_count = Persistence(StorageKey.banner.value).read_json()
+    except Exception as e:
+        pass
     banner.pity_count = pity_count
     banner.audit_pity_count()
 
