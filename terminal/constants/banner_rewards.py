@@ -40,7 +40,7 @@ BANNER_REWARDS = {
         (ItemName.points, 200, 2),
     ],
     RewardRarity.epic.value: [
-        (ItemName.crystals, 3688, 3),
+        (ItemName.crystals, 3688, 10),
         (ItemName.commemorative_coins, 3000, 2),
         (ItemName.drink_vouchers, 1, 1),
         (ItemName.daily_coins, 5000, 1),
