@@ -5,11 +5,14 @@ from models.item_name import ItemName
 
 
 class UserStats:
+    # Property used for performing wish on a banner.
+    wish_wit: int
     # Mapping item name to quantities.
     properties: Dict[str, float]
     wish_history: List[BannerReward]
 
     def __init__(self):
+        self.wish_wit = 0
         self.wish_history = []
         self.properties = {}
         self.audit_properties()
