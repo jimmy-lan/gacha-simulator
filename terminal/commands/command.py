@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 SPACE = " "
 
@@ -19,8 +19,9 @@ class Command:
     def execute(self):
         pass
 
-    def run(self, rawInput: str):
-        self.rawArgs = rawInput.strip().split(SPACE)
+    def run(self, rawInput: Union[str, List[str]]):
+        self.rawArgs = rawInput.strip().split(SPACE) \
+            if type(rawInput) is str else rawInput
         self.audit_args()
         self.execute()
 
