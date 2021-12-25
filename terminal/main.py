@@ -1,4 +1,5 @@
 from controllers.banner import Banner
+from controllers.program_context import ProgramContext
 from helpers import create_banner
 from models.banner_reward import BannerReward
 from models.item_name import ItemName
@@ -8,7 +9,8 @@ from colorama import init
 init(autoreset=True)
 
 if __name__ == '__main__':
-    banner = create_banner()
+    ProgramContext.initialize()
+    banner = ProgramContext.banner
 
     count = {
         RewardRarity.epic.value: 0,

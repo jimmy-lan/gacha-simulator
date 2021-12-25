@@ -4,8 +4,8 @@ from models.user_stats import UserStats
 
 
 class ProgramContext:
-    banner: Banner
-    user_stats: UserStats
+    banner: Banner = None
+    user_stats: UserStats = None
 
     @staticmethod
     def initialize():
