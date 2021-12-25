@@ -78,3 +78,4 @@ class WishCommand(Command):
         if not self.consume_wish_wit():
             raise Exception("Insufficient wish wits.")
         self.perform_wish()
+

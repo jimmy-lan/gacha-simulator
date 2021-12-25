@@ -20,3 +20,8 @@ class ProgramContext:
     @staticmethod
     def save_banner_pity():
         save_banner(ProgramContext.banner)
+
+    @staticmethod
+    def save():
+        ProgramContext.save_user_stats()
+        ProgramContext.save_banner_pity()
