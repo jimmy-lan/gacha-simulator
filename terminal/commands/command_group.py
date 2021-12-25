@@ -12,4 +12,11 @@ class CommandGroup(Command):
         self.subcommands = subcommands
 
     def _build_subcommand_map(self):
-        pass
+        self._subcommand_map = {}
+        for subcommand in self.subcommands:
+            self._subcommand_map[subcommand.name] = subcommand
+
+    def _validate_subcommands(self):
+        for subcommand in self.subcommands:
+            if subcommand.name == self.name:
+                raise Exception("Subcommand must not have the same name as the command group.")
