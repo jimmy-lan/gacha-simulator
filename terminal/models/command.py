@@ -6,6 +6,7 @@ SPACE = " "
 class Command:
     args: List[str]
     name: str
+    aliases: List[str]
     description: str
 
     def __init__(self, name: str, description: str):
