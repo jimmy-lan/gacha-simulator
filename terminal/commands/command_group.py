@@ -26,4 +26,13 @@ class CommandGroup(Command):
             if subcommand.name == self.name:
                 raise Exception("Subcommand must not have the same name as the command group.")
 
+    def print_help(self):
+        super().print_help()
+        print(f"Available commands: {[subcommand.name for subcommand in self.subcommands]}")
+
+    def execute(self):
+        if len(self.args) < 1:
+            self.print_help()
+            return
+
 
