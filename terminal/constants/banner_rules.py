@@ -2,6 +2,8 @@ from models.reward_rarity import RewardRarity
 
 # Price of wish wit (unit: point)
 WISH_WIT_PRICE = 160
+MIN_WISHES = 1
+MAX_WISHES = 10
 
 # Determine the weight of each rarity item in the banner.
 RARITY_WEIGHTS = {
