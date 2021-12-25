@@ -6,7 +6,7 @@ from models.item_name import ItemName
 
 class UserStats:
     # Mapping item name to quantities.
-    properties: Dict[ItemName, float]
+    properties: Dict[str, float]
     wish_history: List[BannerReward]
 
     def __init__(self):
@@ -25,3 +25,7 @@ class UserStats:
         for item_name in item_names:
             if item_name not in self.properties:
                 self.properties[item_name] = 0
+
+    def record_wish(self, reward: BannerReward):
+        self.wish_history.append(reward)
+        self.properties[reward.name] += reward.quantity
