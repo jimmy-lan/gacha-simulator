@@ -28,16 +28,19 @@ def read_banner(banner: Banner) -> None:
 
 
 def read_user_stats(user_stats: UserStats) -> None:
+    wish_wit = 0
     properties = {}
     wish_history = []
     try:
-        user_stats = Persistence(StorageKey.user_stats.value).read_json()
-        properties = user_stats["properties"]
-        wish_history = user_stats["wish_history"]
+        raw_stats = Persistence(StorageKey.user_stats.value).read_json()
+        properties = raw_stats["properties"]
+        wish_wit = raw_stats["wish_wit"]
+        wish_history = raw_stats["wish_history"]
     except Exception as e:
-        pass
+        return
     user_stats.properties = properties
     user_stats.audit_properties()
+    user_stats.wish_wit = wish_wit
     user_stats.wish_history = wish_history
 
 
