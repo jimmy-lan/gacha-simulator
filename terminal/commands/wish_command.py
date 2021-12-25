@@ -9,8 +9,25 @@ from models.item_name import ItemName
 
 
 class WishCommand(Command):
+    num_wish: int
+
     def __int__(self):
         super().__init__("wish", "Make wishes using wish wit.", aliases=["r"])
+
+    def _parse_num_wish(self):
+        if len(self.args) < 1:
+            return 1
+        if not self.args[0].isdigit():
+            raise Exception(f"Invalid number of wishes passed into command {self.name}.")
+        num_wish = int(self.args[0])
+        if num_wish < 1 or num_wish > 10:
+            raise Exception(f"Number of wishes must be an integer between 1 and 10 inclusive.")
+        return num_wish
+
+    def get_num_wish(self):
+        if not self.num_wish:
+            self.num_wish = self._parse_num_wish()
+        return self.num_wish
 
     def consume_wish_wit(self) -> bool:
         num_wish = self.get_num_wish()
@@ -28,16 +45,6 @@ class WishCommand(Command):
             ProgramContext.user_stats.properties[ItemName.points.value] -= price
         ProgramContext.user_stats.wish_wit = max(num_user_wit - num_wish, 0)
         return True
-
-    def get_num_wish(self):
-        if len(self.args) < 1:
-            return 1
-        if not self.args[0].isdigit():
-            raise Exception(f"Invalid number of wishes passed into command {self.name}.")
-        num_wish = int(self.args[0])
-        if num_wish < 1 or num_wish > 10:
-            raise Exception(f"Number of wishes must be an integer between 1 and 10 inclusive.")
-        return num_wish
 
     def execute(self):
         if not self.consume_wish_wit():
