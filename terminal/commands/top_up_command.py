@@ -25,4 +25,4 @@ class TopUpCommand(Command):
             raise Exception("Invalid top up amount, out of acceptable range.")
 
     def execute(self):
-        pass
+        self.parse_arguments()
