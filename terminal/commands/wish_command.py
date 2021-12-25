@@ -2,7 +2,7 @@ from time import sleep
 
 from colorama import Fore
 
-from constants.banner_rules import WISH_WIT_PRICE
+from constants.banner_rules import WISH_WIT_PRICE, MIN_WISHES, MAX_WISHES
 from program_context import ProgramContext
 from models.command import Command
 from models.item_name import ItemName
@@ -20,7 +20,7 @@ class WishCommand(Command):
         if not self.args[0].isdigit():
             raise Exception(f"Invalid number of wishes passed into command {self.name}.")
         num_wish = int(self.args[0])
-        if num_wish < 1 or num_wish > 10:
+        if num_wish < MIN_WISHES or num_wish > MAX_WISHES:
             raise Exception(f"Number of wishes must be an integer between 1 and 10 inclusive.")
         return num_wish
 
