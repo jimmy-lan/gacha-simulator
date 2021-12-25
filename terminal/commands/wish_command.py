@@ -46,6 +46,9 @@ class WishCommand(Command):
         ProgramContext.user_stats.wish_wit = max(num_user_wit - num_wish, 0)
         return True
 
+    def perform_wish(self):
+        num_wish = self.get_num_wish()
+
     def execute(self):
         if not self.consume_wish_wit():
             raise Exception("Insufficient wish wits.")
