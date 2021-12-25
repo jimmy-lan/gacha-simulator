@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-from commands.command import Command
+from models.command import Command
 
 
 class CommandGroup(Command):
