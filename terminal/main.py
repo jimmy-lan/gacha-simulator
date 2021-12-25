@@ -1,4 +1,4 @@
-from controllers.program_context import ProgramContext
+from program_context import ProgramContext
 from models.reward_rarity import RewardRarity
 from colorama import init
 

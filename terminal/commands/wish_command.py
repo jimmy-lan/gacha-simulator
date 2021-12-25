@@ -3,7 +3,7 @@ from time import sleep
 from colorama import Fore
 
 from constants.banner_rules import WISH_WIT_PRICE
-from controllers.program_context import ProgramContext
+from program_context import ProgramContext
 from models.command import Command
 from models.item_name import ItemName
 
