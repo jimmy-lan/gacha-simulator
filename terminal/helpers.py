@@ -27,7 +27,7 @@ def read_banner(banner: Banner) -> None:
 
 
 def save_user_stats(user_stats: UserStats) -> None:
-    pass
+    Persistence(StorageKey.user_stats.value).save_json(vars(user_stats))
 
 
 def read_user_stats(user_stats: UserStats) -> None:
