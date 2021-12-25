@@ -20,6 +20,8 @@ class CommandGroup(Command):
         self._subcommand_map = {}
         for subcommand in self.subcommands:
             self._subcommand_map[subcommand.name] = subcommand
+            for alias in subcommand.aliases:
+                self._subcommand_map[alias] = subcommand
 
     def _validate_subcommands(self):
         for subcommand in self.subcommands:
