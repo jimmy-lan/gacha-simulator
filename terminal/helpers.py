@@ -4,6 +4,7 @@ from controllers.banner import Banner
 from controllers.persistence import Persistence
 from models.banner_reward import BannerReward
 from models.storage_key import StorageKey
+from models.user_stats import UserStats
 
 
 def save_banner(banner: Banner) -> None:
@@ -24,6 +25,20 @@ def read_banner(banner: Banner) -> None:
         pass
     banner.pity_count = pity_count
     banner.audit_pity_count()
+
+
+def read_user_stats(user_stats: UserStats) -> None:
+    properties = {}
+    wish_history = []
+    try:
+        user_stats = Persistence(StorageKey.user_stats.value).read_json()
+        properties = user_stats["properties"]
+        wish_history = user_stats["wish_history"]
+    except Exception as e:
+        pass
+    user_stats.properties = properties
+    user_stats.audit_properties()
+    user_stats.wish_history = wish_history
 
 
 def create_banner() -> Banner:
