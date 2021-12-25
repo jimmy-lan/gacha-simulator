@@ -12,7 +12,8 @@ class WishCommand(Command):
     def __int__(self):
         super().__init__("wish", "Make wishes using wish wit.", aliases=["r"])
 
-    def consume_wish_wit(self, num_wish: int) -> bool:
+    def consume_wish_wit(self) -> bool:
+        num_wish = self.get_num_wish()
         num_user_wit = ProgramContext.user_stats.wish_wit
         if num_user_wit < num_wish:
             diff = num_wish - num_user_wit
@@ -39,4 +40,7 @@ class WishCommand(Command):
         return num_wish
 
     def execute(self):
-        pass
+        if not self.consume_wish_wit():
+            raise Exception("Insufficient wish wits.")
+
+
