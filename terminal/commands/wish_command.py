@@ -1,3 +1,4 @@
+from time import sleep
 from typing import List
 
 from colorama import Fore
@@ -46,8 +47,31 @@ class WishCommand(Command):
         ProgramContext.user_stats.wish_wit = max(num_user_wit - num_wish, 0)
         return True
 
+    def wait_for_next_wish(self):
+        if self.get_num_wish() > 1:
+            sleep(0.5)
+
     def perform_wish(self):
         num_wish = self.get_num_wish()
+        # A mapping between rewards names and total quantity obtained.
+        rewards_map = {}
+
+        print("--- [Obtained] ---")
+        for _ in range(num_wish):
+            reward = ProgramContext.banner.wish()
+            if reward.name.value in rewards_map:
+                rewards_map[reward.name.value] += reward.quantity
+            else:
+                rewards_map[reward.name.value] = reward.quantity
+            print(reward)
+            self.wait_for_next_wish()
+
+        if self.get_num_wish() == 1:
+            return
+        print("-" * 30)
+        print(f"--- [Wish Summary] ---")
+        for name, quantity in rewards_map.items():
+            print(f"- {name} * {quantity}")
 
     def execute(self):
         if not self.consume_wish_wit():
