@@ -26,6 +26,10 @@ def read_banner(banner: Banner) -> None:
     banner.audit_pity_count()
 
 
+def save_user_stats(user_stats: UserStats) -> None:
+    pass
+
+
 def read_user_stats(user_stats: UserStats) -> None:
     try:
         raw_stats = Persistence(StorageKey.user_stats.value).read_json()
