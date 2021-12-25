@@ -9,10 +9,11 @@ class Command:
     aliases: List[str]
     description: str
 
-    def __init__(self, name: str, description: str):
+    def __init__(self, name: str, description: str, aliases: List[str] = []):
         self.name = name
-        self.rawArgs = []
+        self.aliases = aliases
         self.description = description
+        self.rawArgs = []
 
     def audit_args(self):
         self.args = [arg for arg in self.args if arg]
