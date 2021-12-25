@@ -34,5 +34,5 @@ class CommandGroup(Command):
         if len(self.args) < 1:
             self.print_help()
             return
-
-
+        subcommand_name = self.args[0]
+        self._subcommand_map[subcommand_name].run(self.args[1:])
