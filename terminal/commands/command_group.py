@@ -25,3 +25,5 @@ class CommandGroup(Command):
         for subcommand in self.subcommands:
             if subcommand.name == self.name:
                 raise Exception("Subcommand must not have the same name as the command group.")
+
+

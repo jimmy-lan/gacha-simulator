@@ -1,8 +1,10 @@
 from typing import List
 
+SPACE = " "
+
 
 class Command:
-    rawArgs: List[str]
+    args: List[str]
     name: str
     description: str
 
@@ -11,11 +13,15 @@ class Command:
         self.rawArgs = []
         self.description = description
 
+    def audit_args(self):
+        self.args = [arg for arg in self.args if arg]
+
     def execute(self):
         pass
 
-    def run(self, rawArgs: List[str]):
-        self.rawArgs = rawArgs
+    def run(self, rawInput: str):
+        self.rawArgs = rawInput.strip().split(SPACE)
+        self.audit_args()
         self.execute()
 
     def print_help(self):
