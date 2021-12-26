@@ -11,7 +11,7 @@ from models.item_name import ItemName
 class WishCommand(Command):
     num_wish: int
 
-    def __int__(self):
+    def __init__(self):
         super().__init__("wish", "Make wishes using wish wit.", aliases=["r"])
 
     def _parse_num_wish(self):
