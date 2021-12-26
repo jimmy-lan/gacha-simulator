@@ -33,3 +33,4 @@ class TopUpCommand(Command):
         else:
             ProgramContext.user_stats.num_wish_wits += self.amount
         print(f"Top up completed: {self.top_up_item} * {self.amount}.")
+        ProgramContext.save_user_stats()
