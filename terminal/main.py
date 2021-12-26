@@ -6,7 +6,7 @@ from commands.top_up_command import TopUpCommand
 from commands.wish_command import WishCommand
 from models.command_group import CommandGroup
 from program_context import ProgramContext
-from colorama import init, Back, Fore
+from colorama import init, Fore
 
 init(autoreset=True)
 

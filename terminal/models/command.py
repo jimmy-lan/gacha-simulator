@@ -18,6 +18,9 @@ class Command:
     def audit_args(self):
         self.args = [arg for arg in self.args if arg]
 
+    def has_help_flag(self):
+        return "--help" in self.args
+
     def execute(self):
         pass
 
@@ -25,6 +28,9 @@ class Command:
         self.args = rawInput.strip().split(SPACE) \
             if type(rawInput) is str else rawInput
         self.audit_args()
+        if self.has_help_flag():
+            self.print_help()
+            return
         self.execute()
 
     def print_help(self):
