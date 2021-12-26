@@ -2,6 +2,7 @@ from commands.exit_command import ExitCommand
 from commands.list_pity_command import ListPityCommand
 from commands.list_prop_command import ListPropCommand
 from commands.redeem_command import RedeemCommand
+from commands.reset_command import ResetCommand
 from commands.top_up_command import TopUpCommand
 from commands.wish_command import WishCommand
 from models.command_group import CommandGroup
@@ -18,7 +19,8 @@ def get_root_cmd():
         ListPropCommand(),
         RedeemCommand(),
         TopUpCommand(),
-        WishCommand()
+        WishCommand(),
+        ResetCommand()
     ])
     return command
 
