@@ -12,8 +12,9 @@ class RedeemCommand(Command):
 
         print("--- [Redeem Commands] ---")
         for item_name, quantity in prop_map.items():
-            print(f"habits transaction create --property-id {ITEM_IDS[item_name]} -t \"[Redeem] Wish Rewards\" " +
-                  f"-a {quantity}")
+            if quantity > 0:
+                print(f"habits transaction create --property-id {ITEM_IDS[item_name]} -t \"[Redeem] Wish Rewards\" " +
+                      f"-a {quantity}")
 
         ProgramContext.user_stats.properties = {}
         ProgramContext.user_stats.audit_properties()
