@@ -59,12 +59,12 @@ class WishCommand(Command):
         print("--- [Obtained] ---")
         for _ in range(num_wish):
             reward = ProgramContext.banner.wish()
-            if reward.name.value in rewards_map:
-                rewards_map[reward.name.value] += reward.quantity
+            if reward.name in rewards_map:
+                rewards_map[reward.name] += reward.quantity
             else:
-                rewards_map[reward.name.value] = reward.quantity
+                rewards_map[reward.name] = reward.quantity
             ProgramContext.user_stats.record_wish(reward)
-            ProgramContext.user_stats.properties[reward.name.value] += reward.quantity
+            ProgramContext.user_stats.properties[reward.name] += reward.quantity
             print(reward)
             self.wait_for_next_wish()
 
