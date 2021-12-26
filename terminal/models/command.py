@@ -13,7 +13,7 @@ class Command:
         self.name = name
         self.aliases = aliases
         self.description = description
-        self.rawArgs = []
+        self.args = []
 
     def audit_args(self):
         self.args = [arg for arg in self.args if arg]
@@ -22,7 +22,7 @@ class Command:
         pass
 
     def run(self, rawInput: Union[str, List[str]]):
-        self.rawArgs = rawInput.strip().split(SPACE) \
+        self.args = rawInput.strip().split(SPACE) \
             if type(rawInput) is str else rawInput
         self.audit_args()
         self.execute()
