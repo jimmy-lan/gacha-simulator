@@ -6,7 +6,7 @@ from commands.top_up_command import TopUpCommand
 from commands.wish_command import WishCommand
 from models.command_group import CommandGroup
 from program_context import ProgramContext
-from colorama import init, Back
+from colorama import init, Back, Fore
 
 init(autoreset=True)
 
@@ -27,9 +27,9 @@ if __name__ == '__main__':
     ProgramContext.initialize()
     cmd = get_root_cmd()
 
-    print("*" * 60)
-    print(Back.BLUE + f"Welcome! You have {ProgramContext.user_stats.num_wish_wits} wish wits to spare.")
-    print("*" * 60)
+    print(Fore.BLUE + "*" * 60)
+    print(Fore.BLUE + f"Welcome! You have {ProgramContext.user_stats.num_wish_wits} wish wits to spare.")
+    print(Fore.BLUE + "*" * 60)
 
     while True:
         rawInput = input(">>> ")
