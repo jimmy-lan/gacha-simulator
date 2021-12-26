@@ -26,3 +26,8 @@ class ProgramContext:
     def save():
         ProgramContext.save_user_stats()
         ProgramContext.save_banner_pity()
+
+    def reset(self):
+        ProgramContext.banner = create_banner()
+        ProgramContext.user_stats = UserStats()
+        self.save()
