@@ -27,21 +27,22 @@ def read_banner(banner: Banner) -> None:
 
 
 def save_user_stats(user_stats: UserStats) -> None:
-    Persistence(StorageKey.user_stats.value).save_json(vars(user_stats))
+    Persistence(StorageKey.user_stats.value).save_json({
+        "properties": user_stats.properties,
+        "num_wish_wits": user_stats.num_wish_wits,
+    })
 
 
 def read_user_stats(user_stats: UserStats) -> None:
     try:
         raw_stats = Persistence(StorageKey.user_stats.value).read_json()
         properties = raw_stats["properties"]
-        wish_wit = raw_stats["num_wish_wits"]
-        wish_history = raw_stats["wish_history"]
+        num_wish_wits = raw_stats["num_wish_wits"]
     except Exception as e:
         return
     user_stats.properties = properties
     user_stats.audit_properties()
-    user_stats.num_wish_wits = wish_wit
-    user_stats.wish_history = wish_history
+    user_stats.num_wish_wits = num_wish_wits
 
 
 def create_banner() -> Banner:
