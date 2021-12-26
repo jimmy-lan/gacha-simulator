@@ -31,5 +31,5 @@ class TopUpCommand(Command):
         if self.top_up_item == "points":
             ProgramContext.user_stats.properties[ItemName.points.value] += self.amount
         else:
-            ProgramContext.user_stats.wish_wit += self.amount
+            ProgramContext.user_stats.num_wish_wits += self.amount
         print(f"Top up completed: {self.top_up_item} * {self.amount}.")

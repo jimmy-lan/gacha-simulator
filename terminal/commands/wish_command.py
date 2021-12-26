@@ -31,7 +31,7 @@ class WishCommand(Command):
 
     def consume_wish_wit(self) -> bool:
         num_wish = self.get_num_wish()
-        num_user_wit = ProgramContext.user_stats.wish_wit
+        num_user_wit = ProgramContext.user_stats.num_wish_wits
         if num_user_wit < num_wish:
             diff = num_wish - num_user_wit
             price = diff * WISH_WIT_PRICE
@@ -43,7 +43,7 @@ class WishCommand(Command):
             if is_accept.lower() != "y":
                 return False
             ProgramContext.user_stats.properties[ItemName.points.value] -= price
-        ProgramContext.user_stats.wish_wit = max(num_user_wit - num_wish, 0)
+        ProgramContext.user_stats.num_wish_wits = max(num_user_wit - num_wish, 0)
         return True
 
     def wait_for_next_wish(self):

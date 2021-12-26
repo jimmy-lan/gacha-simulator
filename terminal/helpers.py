@@ -40,7 +40,7 @@ def read_user_stats(user_stats: UserStats) -> None:
         return
     user_stats.properties = properties
     user_stats.audit_properties()
-    user_stats.wish_wit = wish_wit
+    user_stats.num_wish_wits = wish_wit
     user_stats.wish_history = wish_history
 
 
