@@ -11,7 +11,7 @@ class ResetCommand(Command):
     def execute(self):
         print(Fore.YELLOW + "[Note] This is a dangerous operation. Please confirm three (3) times below.")
         for _ in range(3):
-            accepted_input = input(f"This will clear {Fore.RED}ALL GAME DATA{Fore.RED}. Continue? (yn) ")
+            accepted_input = input(f"This will clear {Fore.RED}ALL GAME DATA{Fore.RESET}. Continue? (yn) ")
             if accepted_input.lower() != "y":
                 raise Exception("Reset failed: Cancelled by the user.")
                 return
