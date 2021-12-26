@@ -13,6 +13,7 @@ class WishCommand(Command):
 
     def __init__(self):
         super().__init__("wish", "Make wishes using wish wit.", aliases=["r"])
+        self.num_wish = 0
 
     def _parse_num_wish(self):
         if len(self.args) < 1:
@@ -21,7 +22,7 @@ class WishCommand(Command):
             raise Exception(f"Invalid number of wishes passed into command {self.name}.")
         num_wish = int(self.args[0])
         if num_wish < MIN_WISHES or num_wish > MAX_WISHES:
-            raise Exception(f"Number of wishes must be an integer between 1 and 10 inclusive.")
+            raise Exception(f"Number of wishes must be an integer between {MIN_WISHES} and {MAX_WISHES} inclusive.")
         return num_wish
 
     def get_num_wish(self):
@@ -39,7 +40,7 @@ class WishCommand(Command):
                 return False
             is_accept = input("You don't have enough wish wit for this roll. Do you want " +
                               f"to use {Fore.GREEN}{price}{Fore.RESET} points to redeem the missing wish wits? " +
-                              "(yn)")
+                              "(yn) ")
             if is_accept.lower() != "y":
                 return False
             ProgramContext.user_stats.properties[ItemName.points.value] -= price
