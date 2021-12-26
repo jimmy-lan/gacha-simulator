@@ -37,4 +37,7 @@ class CommandGroup(Command):
             self.print_help()
             return
         subcommand_name = self.args[0]
+        if subcommand_name not in self._subcommand_map:
+            self.print_help()
+            raise Exception(f"Sub-command name {subcommand_name} could not be found.")
         self._subcommand_map[subcommand_name].run(self.args[1:])
