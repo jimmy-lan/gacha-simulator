@@ -34,7 +34,7 @@ def read_user_stats(user_stats: UserStats) -> None:
     try:
         raw_stats = Persistence(StorageKey.user_stats.value).read_json()
         properties = raw_stats["properties"]
-        wish_wit = raw_stats["wish_wit"]
+        wish_wit = raw_stats["num_wish_wits"]
         wish_history = raw_stats["wish_history"]
     except Exception as e:
         return
