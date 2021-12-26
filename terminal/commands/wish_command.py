@@ -1,4 +1,5 @@
 from time import sleep
+from typing import Optional
 
 from colorama import Fore
 
@@ -9,11 +10,11 @@ from models.item_name import ItemName
 
 
 class WishCommand(Command):
-    num_wish: int
+    num_wish: Optional[int]
 
     def __init__(self):
         super().__init__("wish", "Make wishes using wish wit.", aliases=["r"])
-        self.num_wish = 0
+        self.num_wish = None
 
     def _parse_num_wish(self):
         if len(self.args) < 1:
@@ -26,7 +27,7 @@ class WishCommand(Command):
         return num_wish
 
     def get_num_wish(self):
-        if not self.num_wish:
+        if self.num_wish is None:
             self.num_wish = self._parse_num_wish()
         return self.num_wish
 
@@ -79,4 +80,5 @@ class WishCommand(Command):
         if not self.consume_wish_wit():
             raise Exception("Insufficient wish wits.")
         self.perform_wish()
+        self.num_wish = None
         ProgramContext.save()
