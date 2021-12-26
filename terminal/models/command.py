@@ -19,7 +19,7 @@ class Command:
         self.args = [arg for arg in self.args if arg]
 
     def has_help_flag(self):
-        return "--help" in self.args
+        return len(self.args) >= 1 and self.args[0] == "--help"
 
     def execute(self):
         pass

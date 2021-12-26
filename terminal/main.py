@@ -12,7 +12,7 @@ init(autoreset=True)
 
 
 def get_root_cmd():
-    command = CommandGroup("", "", subcommands=[
+    command = CommandGroup("gacha-sim", "", subcommands=[
         ExitCommand(),
         ListPityCommand(),
         ListPropCommand(),
