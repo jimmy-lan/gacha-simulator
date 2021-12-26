@@ -31,4 +31,4 @@ class ProgramContext:
     def reset():
         ProgramContext.banner = create_banner()
         ProgramContext.user_stats = UserStats()
-        self.save()
+        ProgramContext.save()
