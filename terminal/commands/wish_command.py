@@ -27,8 +27,7 @@ class WishCommand(Command):
         return num_wish
 
     def get_num_wish(self):
-        if self.num_wish is None:
-            self.num_wish = self._parse_num_wish()
+        self.num_wish = self._parse_num_wish()
         return self.num_wish
 
     def consume_wish_wit(self) -> bool:
@@ -80,5 +79,4 @@ class WishCommand(Command):
         if not self.consume_wish_wit():
             raise Exception("Insufficient wish wits.")
         self.perform_wish()
-        self.num_wish = None
         ProgramContext.save()
