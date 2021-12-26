@@ -1,5 +1,5 @@
 from controllers.banner import Banner
-from helpers import create_banner, read_user_stats, save_user_stats, save_banner
+from helpers import create_banner, read_user_stats, save_user_stats, save_banner, read_banner
 from models.user_stats import UserStats
 
 
@@ -10,6 +10,7 @@ class ProgramContext:
     @staticmethod
     def initialize():
         ProgramContext.banner = create_banner()
+        read_banner(ProgramContext.banner)
         ProgramContext.user_stats = UserStats()
         read_user_stats(ProgramContext.user_stats)
 
