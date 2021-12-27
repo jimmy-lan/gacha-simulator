@@ -29,13 +29,16 @@ class PityStatsCommand(Command):
         print("--- [Probabilities] ---")
         print(f"- Probability of an {get_rarity_display(RewardRarity.epic.value)} item on " +
               f"your next wish is approximately {next_epic_probability}%.")
-        print(f"- Probability of an {get_rarity_display(RewardRarity.super_rare.value)} item on " +
+        print(f"- Probability of a {get_rarity_display(RewardRarity.super_rare.value)} item on " +
               f"your next wish is approximately {next_super_rare_probability}%.")
-        print()
-        print(f"{Fore.YELLOW}Notes:{Fore.RESET}")
-        print("The probabilities of an epic item and a super rare item can add up to more than 100.0%.")
-        print("In such case, you are guaranteed to get an epic or super rare item on your next wish.")
-        print("Moreover, parts of the increased probability will be carried over to the wish after your next wish.")
+        print("--- [Probability Notes] ---")
+        print(f"The probabilities of an {get_rarity_display(RewardRarity.epic.value)} item and a "
+              + f"{get_rarity_display(RewardRarity.super_rare.value)} item can add up to more than "
+              + f"{Fore.BLUE}100.0%{Fore.RESET}.")
+        print(f"In such case, you are {Fore.BLUE}guaranteed{Fore.RESET} to get an epic or super rare item on your "
+              + f"next wish.")
+        print(f"Moreover, parts of the increased probability {Fore.BLUE}will be carried over{Fore.RESET} to the wish "
+              + f"after your next wish.")
 
     def execute(self):
         self.print_pity_count()
