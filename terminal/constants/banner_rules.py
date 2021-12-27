@@ -7,9 +7,9 @@ MAX_WISHES = 10
 
 # Determine the weight of each rarity item in the banner.
 RARITY_WEIGHTS = {
-    RewardRarity.common.value: 60,
-    RewardRarity.rare.value: 30,
-    RewardRarity.super_rare.value: 9.4,
+    RewardRarity.common.value: 62,
+    RewardRarity.rare.value: 32.4,
+    RewardRarity.super_rare.value: 5,
     RewardRarity.epic.value: 0.6
 }
 
@@ -27,6 +27,6 @@ PITY_MAX_DRAW = {
 # drawing this rarity item will eventually increase and reach 100% on PITY_MAX_DRAW.
 # When an item of the corresponding rarity is drawn, the count will be reset to zero (0).
 PITY_THRESHOLD = {
-    RewardRarity.epic.value: 67,
+    RewardRarity.epic.value: 66,
     RewardRarity.super_rare.value: 8
 }
