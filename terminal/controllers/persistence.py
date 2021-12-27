@@ -3,7 +3,7 @@ import os
 from os import path
 from typing import Dict
 
-from constants.persistence import DEFAULT_STORAGE_FOLDER_NAME
+from constants.persistence import DEFAULT_STORAGE_FOLDER_PATH
 
 
 class Persistence:
@@ -12,10 +12,11 @@ class Persistence:
     # Root folder to persist this key.
     root: str
 
-    def __init__(self, key: str, root: str = DEFAULT_STORAGE_FOLDER_NAME):
+    def __init__(self, key: str, root: str = DEFAULT_STORAGE_FOLDER_PATH):
         self.key = key
         self.root = root
         self.create_root()
+        print(root)
 
     def create_root(self):
         if not path.exists(self.root):
