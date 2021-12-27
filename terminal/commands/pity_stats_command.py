@@ -11,7 +11,7 @@ class PityStatsCommand(Command):
     def __init__(self):
         super().__init__("stats", "List number of wishes since last item with rarity.", aliases=["s", "stat"])
 
-    def execute(self):
+    def print_pity_count(self):
         pity_count = ProgramContext.banner.pity_count
         epic_pity_count = pity_count[RewardRarity.epic.value]
         super_rare_pity_count = pity_count[RewardRarity.super_rare.value]
@@ -20,3 +20,7 @@ class PityStatsCommand(Command):
               f"{get_rarity_display(RewardRarity.epic)} item.")
         print(f"- You have {super_rare_pity_count} wishes since your last " +
               f"{get_rarity_display(RewardRarity.super_rare)} item.")
+
+    def execute(self):
+        self.print_pity_count()
+
