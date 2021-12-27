@@ -5,14 +5,19 @@ from models.reward_rarity import RewardRarity
 # The player will spend 160 points for each wish.
 BANNER_REWARDS = {
     RewardRarity.common.value: [
-        (ItemName.crystals, 20, 2),
-        (ItemName.crystals, 30, 1),
+        (ItemName.crystals, 10, 2),
+        (ItemName.crystals, 12, 3),
+        (ItemName.crystals, 15, 5),
+        (ItemName.crystals, 18, 2),
+        (ItemName.crystals, 20, 1),
+        (ItemName.commemorative_coins, 10, 1),
+        (ItemName.commemorative_coins, 15, 1),
         (ItemName.commemorative_coins, 20, 1),
         (ItemName.drink_voucher_fragments, 1, 3),
         (ItemName.daily_coins, 20, 2),
         (ItemName.daily_coins, 30, 1),
-        (ItemName.points, 100, 1),
-        (ItemName.points, 120, 1)
+        (ItemName.points, 60, 2),
+        (ItemName.points, 80, 1)
     ],
     RewardRarity.rare.value: [
         (ItemName.crystals, 40, 2),
