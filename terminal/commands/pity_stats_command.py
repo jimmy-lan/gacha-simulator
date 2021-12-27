@@ -32,4 +32,5 @@ class PityStatsCommand(Command):
 
     def execute(self):
         self.print_pity_count()
+        self.print_probability()
 
