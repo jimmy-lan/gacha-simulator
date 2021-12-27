@@ -1,4 +1,4 @@
-from helpers import get_rarity_display
+from helpers import get_rarity_display, round_to_decimals
 from models.command import Command
 from models.reward_rarity import RewardRarity
 from program_context import ProgramContext
@@ -22,8 +22,8 @@ class PityStatsCommand(Command):
         epic_weight = ProgramContext.banner.get_weight(RewardRarity.epic.value)
         super_rare_weight = ProgramContext.banner.get_weight(RewardRarity.super_rare.value)
         total_rarity_weight = ProgramContext.banner.total_rarity_weight
-        next_epic_probability = epic_weight / total_rarity_weight * 100
-        next_super_rare_probability = super_rare_weight / total_rarity_weight * 100
+        next_epic_probability = round_to_decimals(epic_weight / total_rarity_weight * 100, 2)
+        next_super_rare_probability = round_to_decimals(super_rare_weight / total_rarity_weight * 100, 2)
         print("--- [Probabilities] ---")
         print(f"- Probability of an {get_rarity_display(RewardRarity.epic.value)} item on " +
               f"your next wish is about {next_epic_probability}%.")
