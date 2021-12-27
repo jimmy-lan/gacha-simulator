@@ -13,7 +13,7 @@ class WishCommand(Command):
     num_wish: Optional[int]
 
     def __init__(self):
-        super().__init__("wish", "Make wishes using wish wit.", aliases=["r"])
+        super().__init__("wish", "Make wishes using wish wit.", aliases=["r", "w"])
         self.num_wish = None
 
     def _parse_num_wish(self):
