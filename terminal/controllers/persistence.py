@@ -3,6 +3,8 @@ import os
 from os import path
 from typing import Dict
 
+from constants.persistence import DEFAULT_STORAGE_FOLDER_NAME
+
 
 class Persistence:
     # Key that corresponds with the item being stored.
@@ -10,7 +12,7 @@ class Persistence:
     # Root folder to persist this key.
     root: str
 
-    def __init__(self, key: str, root: str = "storage"):
+    def __init__(self, key: str, root: str = DEFAULT_STORAGE_FOLDER_NAME):
         self.key = key
         self.root = root
         self.create_root()
