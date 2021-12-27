@@ -4,7 +4,7 @@ from program_context import ProgramContext
 
 class ListPityCommand(Command):
     def __init__(self):
-        super().__init__("pity", "List number of wishes since last item with rarity.", aliases=["b"])
+        super().__init__("stats", "List number of wishes since last item with rarity.", aliases=["s"])
 
     def execute(self):
         pity_count = ProgramContext.banner.pity_count
