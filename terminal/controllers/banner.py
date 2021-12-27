@@ -77,7 +77,7 @@ class Banner:
         if self.pity_count[rarity] <= self.pity_threshold[rarity]:
             return self.rarity_weights[rarity]
 
-        num_draws_above_threshold = self.pity_count[rarity] - self.pity_threshold[rarity]
+        num_draws_above_threshold = self.pity_count[rarity] - self.pity_threshold[rarity] + 1
         weight_proportion = \
             num_draws_above_threshold / (self.pity_max_draw[rarity] - self.pity_threshold[rarity])
         return self.rarity_weights[rarity] + \
