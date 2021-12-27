@@ -64,9 +64,10 @@ def create_banner() -> Banner:
     return banner
 
 
-def get_rarity_display(rarity: str, content: str = None):
+def get_rarity_display(rarity: RewardRarity, content: str = None):
     """
-    Return colored rarity string for `content`. If `content` is not provided, it will be defaulted to
+    Get colored rarity display for `content`. If `content` is not provided, it will be defaulted to
     the value of `rarity`.
+
     """
     return f"{RARITY_COLORS[RewardRarity.super_rare.value]}{content or rarity.value}{Fore.RESET}"
