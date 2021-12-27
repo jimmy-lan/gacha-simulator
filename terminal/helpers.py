@@ -64,5 +64,5 @@ def create_banner() -> Banner:
     return banner
 
 
-def get_rarity_name(rarity: RewardRarity):
+def get_rarity_display(rarity: RewardRarity):
     return f"{RARITY_COLORS[RewardRarity.super_rare.value]}{rarity.value}{Fore.RESET}"

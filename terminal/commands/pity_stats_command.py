@@ -1,6 +1,7 @@
 from colorama import Fore
 
 from constants.rarity_colors import RARITY_COLORS
+from helpers import get_rarity_display
 from models.command import Command
 from models.reward_rarity import RewardRarity
 from program_context import ProgramContext
@@ -16,6 +17,6 @@ class PityStatsCommand(Command):
         super_rare_pity_count = pity_count[RewardRarity.super_rare.value]
         print("--- [Pity Stats] ---")
         print(f"- You have {epic_pity_count} wishes since your last " +
-              f"{RARITY_COLORS[RewardRarity.epic.value]}{RewardRarity.epic.value}{Fore.RESET} item.")
+              f"{get_rarity_display(RewardRarity.epic)} item.")
         print(f"- You have {super_rare_pity_count} wishes since your last " +
-              f"{RARITY_COLORS[RewardRarity.super_rare.value]}{RewardRarity.super_rare.value}{Fore.RESET} item.")
+              f"{get_rarity_display(RewardRarity.super_rare)} item.")
