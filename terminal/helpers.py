@@ -1,8 +1,12 @@
+from colorama import Fore
+
 from constants.banner_rewards import BANNER_REWARDS
 from constants.banner_rules import RARITY_WEIGHTS, PITY_MAX_DRAW, PITY_THRESHOLD
+from constants.rarity_colors import RARITY_COLORS
 from controllers.banner import Banner
 from controllers.persistence import Persistence
 from models.banner_reward import BannerReward
+from models.reward_rarity import RewardRarity
 from models.storage_key import StorageKey
 from models.user_stats import UserStats
 
@@ -58,3 +62,7 @@ def create_banner() -> Banner:
             banner.add_reward(reward)
     banner.shuffle_all()
     return banner
+
+
+def get_rarity_name(rarity: RewardRarity):
+    return f"{RARITY_COLORS[RewardRarity.super_rare.value]}{rarity.value}{Fore.RESET}"
