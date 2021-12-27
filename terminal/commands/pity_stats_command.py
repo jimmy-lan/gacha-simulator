@@ -26,9 +26,9 @@ class PityStatsCommand(Command):
         next_super_rare_probability = round_to_decimals(super_rare_weight / total_rarity_weight * 100, 2)
         print("--- [Probabilities] ---")
         print(f"- Probability of an {get_rarity_display(RewardRarity.epic.value)} item on " +
-              f"your next wish is about {next_epic_probability}%.")
+              f"your next wish is approximately {next_epic_probability}%.")
         print(f"- Probability of an {get_rarity_display(RewardRarity.super_rare.value)} item on " +
-              f"your next wish is about {next_super_rare_probability}%.")
+              f"your next wish is approximately {next_super_rare_probability}%.")
 
     def execute(self):
         self.print_pity_count()
