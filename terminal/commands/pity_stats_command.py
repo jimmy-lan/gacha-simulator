@@ -1,6 +1,3 @@
-from colorama import Fore
-
-from constants.rarity_colors import RARITY_COLORS
 from helpers import get_rarity_display
 from models.command import Command
 from models.reward_rarity import RewardRarity
@@ -17,9 +14,21 @@ class PityStatsCommand(Command):
         super_rare_pity_count = pity_count[RewardRarity.super_rare.value]
         print("--- [Pity Stats] ---")
         print(f"- You have {epic_pity_count} wishes since your last " +
-              f"{get_rarity_display(RewardRarity.epic)} item.")
+              f"{get_rarity_display(RewardRarity.epic.value)} item.")
         print(f"- You have {super_rare_pity_count} wishes since your last " +
-              f"{get_rarity_display(RewardRarity.super_rare)} item.")
+              f"{get_rarity_display(RewardRarity.super_rare.value)} item.")
+
+    def print_probability(self):
+        epic_weight = ProgramContext.banner.get_weight(RewardRarity.epic.value)
+        super_rare_weight = ProgramContext.banner.get_weight(RewardRarity.super_rare.value)
+        total_rarity_weight = ProgramContext.banner.total_rarity_weight
+        next_epic_probability = epic_weight / total_rarity_weight * 100
+        next_super_rare_probability = super_rare_weight / total_rarity_weight * 100
+        print("--- [Probabilities] ---")
+        print(f"- Probability of an {get_rarity_display(RewardRarity.epic.value)} item on " +
+              f"your next wish is about {next_epic_probability}%.")
+        print(f"- Probability of an {get_rarity_display(RewardRarity.super_rare.value)} item on " +
+              f"your next wish is about {next_super_rare_probability}%.")
 
     def execute(self):
         self.print_pity_count()
