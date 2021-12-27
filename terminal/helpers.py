@@ -71,3 +71,10 @@ def get_rarity_display(rarity: str, content: str = None):
 
     """
     return f"{RARITY_COLORS[rarity]}{content or rarity}{Fore.RESET}"
+
+
+def round_to_decimals(num: float, decimals: int):
+    if decimals < 0:
+        return num
+    mult_factor = 10 ** decimals
+    return round(num * mult_factor) / mult_factor
