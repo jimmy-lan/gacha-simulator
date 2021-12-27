@@ -16,7 +16,6 @@ class Persistence:
         self.key = key
         self.root = root
         self.create_root()
-        print(root)
 
     def create_root(self):
         if not path.exists(self.root):
