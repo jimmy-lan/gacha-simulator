@@ -2,7 +2,7 @@ from models.command import Command
 from program_context import ProgramContext
 
 
-class ListPityCommand(Command):
+class PityStatsCommand(Command):
     def __init__(self):
         super().__init__("stats", "List number of wishes since last item with rarity.", aliases=["s"])
 

@@ -1,5 +1,5 @@
 from commands.exit_command import ExitCommand
-from commands.list_pity_command import ListPityCommand
+from commands.pity_stats_command import PityStatsCommand
 from commands.list_prop_command import ListPropCommand
 from commands.redeem_command import RedeemCommand
 from commands.reset_command import ResetCommand
@@ -21,7 +21,7 @@ def print_welcome():
 def get_root_cmd():
     command = CommandGroup("gacha-sim", "", subcommands=[
         ExitCommand(),
-        ListPityCommand(),
+        PityStatsCommand(),
         ListPropCommand(),
         RedeemCommand(),
         TopUpCommand(),
