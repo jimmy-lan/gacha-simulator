@@ -12,6 +12,12 @@ from colorama import init, Fore
 init(autoreset=True)
 
 
+def print_welcome():
+    print(Fore.BLUE + "*" * 60)
+    print(Fore.BLUE + f"Welcome! You have {ProgramContext.user_stats.num_wish_wits} wish wits to spare.")
+    print(Fore.BLUE + "*" * 60)
+
+
 def get_root_cmd():
     command = CommandGroup("gacha-sim", "", subcommands=[
         ExitCommand(),
@@ -29,9 +35,7 @@ if __name__ == '__main__':
     ProgramContext.initialize()
     cmd = get_root_cmd()
 
-    print(Fore.BLUE + "*" * 60)
-    print(Fore.BLUE + f"Welcome! You have {ProgramContext.user_stats.num_wish_wits} wish wits to spare.")
-    print(Fore.BLUE + "*" * 60)
+    print_welcome()
 
     while True:
         rawInput = input(">>> ")
