@@ -1,3 +1,5 @@
+from colorama import Fore
+
 from helpers import get_rarity_display, round_to_decimals
 from models.command import Command
 from models.reward_rarity import RewardRarity
@@ -29,6 +31,11 @@ class PityStatsCommand(Command):
               f"your next wish is approximately {next_epic_probability}%.")
         print(f"- Probability of an {get_rarity_display(RewardRarity.super_rare.value)} item on " +
               f"your next wish is approximately {next_super_rare_probability}%.")
+        print()
+        print(f"{Fore.YELLOW}Notes:{Fore.RESET}")
+        print("The probabilities of an epic item and a super rare item can add up to more than 100.0%.")
+        print("In such case, you are guaranteed to get an epic or super rare item on your next wish.")
+        print("Moreover, parts of the increased probability will be carried over to the wish after your next wish.")
 
     def execute(self):
         self.print_pity_count()
