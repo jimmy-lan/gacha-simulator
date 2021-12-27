@@ -66,8 +66,8 @@ class Banner:
 
     def get_weight(self, rarity: str) -> float:
         """
-        Get weight (out of self.total_rarity_weight) of a rarity based on self.rarity_weights and
-        pity count and defined pity configurations.
+        Get weight (out of self.total_rarity_weight) of a rarity on the next wish draw
+        based on self.rarity_weights and pity count and defined pity configurations.
         """
         if self.pity_max_draw is None or rarity not in self.pity_max_draw:
             return self.rarity_weights[rarity]
