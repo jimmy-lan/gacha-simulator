@@ -17,6 +17,6 @@ class PityStatsCommand(Command):
         super_rare_pity_count = pity_count[RewardRarity.super_rare.value]
         print("--- [Pity Stats] ---")
         print(f"- You have {epic_pity_count} wishes since your last " +
-              f"{get_rarity_display(RewardRarity.epic.value)} item.")
+              f"{get_rarity_display(RewardRarity.epic)} item.")
         print(f"- You have {super_rare_pity_count} wishes since your last " +
-              f"{get_rarity_display(RewardRarity.super_rare.value)} item.")
+              f"{get_rarity_display(RewardRarity.super_rare)} item.")
