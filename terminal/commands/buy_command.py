@@ -11,7 +11,7 @@ class BuyCommand(Command):
         super().__init__(
             "buy",
             "Buy wish wits using points in your account." +
-            " Syntax: buy <num_wish_wits>.",
+            " Syntax: buy [num_wish_wits].",
             aliases=["purchase"]
         )
 
