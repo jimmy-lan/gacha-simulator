@@ -22,8 +22,8 @@ class BuyCommand(Command):
         if not self.args[0].isdigit():
             self.print_help()
             raise Exception("Please enter a valid number of wish wits to purchase.")
-
-        return int(self.args[0])
+        num_purchase = int(self.args[0])
+        return num_purchase
 
     def execute(self):
         num_purchase = self.get_num_purchase()
