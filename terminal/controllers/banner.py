@@ -74,7 +74,7 @@ class Banner:
         if self.pity_threshold is None:
             # When no pity threshold is set, default to no probability increase.
             self.pity_threshold = self.pity_max_draw
-        if self.pity_count[rarity] <= self.pity_threshold[rarity]:
+        if self.pity_count[rarity] + 1 <= self.pity_threshold[rarity]:
             return self.rarity_weights[rarity]
 
         num_draws_above_threshold = self.pity_count[rarity] - self.pity_threshold[rarity] + 1
