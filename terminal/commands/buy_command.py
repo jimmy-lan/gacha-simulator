@@ -16,13 +16,14 @@ class BuyCommand(Command):
         points = ProgramContext.user_stats.properties[ItemName.points.value]
         return points // WISH_WIT_PRICE
 
-    def num_purchase(self):
+    def get_num_purchase(self):
         if len(self.args) < 1:
             return self._calc_max_num_purchase()
         if not self.args[0].isdigit():
             self.print_help()
             raise Exception("Please enter a valid number of wish wits to purchase.")
+
         return int(self.args[0])
 
     def execute(self):
-        pass
+        num_purchase = self.get_num_purchase()
