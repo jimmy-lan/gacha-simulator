@@ -17,7 +17,7 @@ class BuyCommand(Command):
 
     def _calc_max_num_purchase(self):
         points = ProgramContext.user_stats.properties[ItemName.points.value]
-        return points // WISH_WIT_PRICE
+        return int(points // WISH_WIT_PRICE)
 
     def get_num_purchase(self):
         max_num_purchase = self._calc_max_num_purchase()
