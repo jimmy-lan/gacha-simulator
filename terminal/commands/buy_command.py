@@ -21,6 +21,8 @@ class BuyCommand(Command):
 
     def get_num_purchase(self):
         max_num_purchase = self._calc_max_num_purchase()
+        if max_num_purchase <= 0:
+            raise Exception("Insufficient points for this transaction.")
         if len(self.args) < 1:
             return max_num_purchase
         if not self.args[0].isdigit():
