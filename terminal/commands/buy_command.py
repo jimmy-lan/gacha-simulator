@@ -38,3 +38,4 @@ class BuyCommand(Command):
         ProgramContext.user_stats.properties[ItemName.points.value] -= num_purchase * WISH_WIT_PRICE
         ProgramContext.user_stats.num_wish_wits += num_purchase
         print(f"{Fore.GREEN}Success! You purchased {num_purchase} wish wits. Good luck!")
+        ProgramContext.save_user_stats()
