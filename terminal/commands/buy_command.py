@@ -17,12 +17,15 @@ class BuyCommand(Command):
         return points // WISH_WIT_PRICE
 
     def get_num_purchase(self):
+        max_num_purchase = self._calc_max_num_purchase()
         if len(self.args) < 1:
-            return self._calc_max_num_purchase()
+            return max_num_purchase
         if not self.args[0].isdigit():
             self.print_help()
             raise Exception("Please enter a valid number of wish wits to purchase.")
         num_purchase = int(self.args[0])
+        if num_purchase > max_num_purchase:
+            raise Exception("Insufficient points for this transaction.")
         return num_purchase
 
     def execute(self):
