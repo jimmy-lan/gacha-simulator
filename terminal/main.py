@@ -1,3 +1,4 @@
+from commands.buy_command import BuyCommand
 from commands.exit_command import ExitCommand
 from commands.pity_stats_command import PityStatsCommand
 from commands.list_prop_command import ListPropCommand
@@ -26,6 +27,7 @@ def get_root_cmd():
         RedeemCommand(),
         TopUpCommand(),
         WishCommand(),
+        BuyCommand(),
         ResetCommand()
     ])
     return command
