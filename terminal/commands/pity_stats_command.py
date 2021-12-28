@@ -15,9 +15,9 @@ class PityStatsCommand(Command):
         epic_pity_count = pity_count[RewardRarity.epic.value]
         super_rare_pity_count = pity_count[RewardRarity.super_rare.value]
         print("--- [Pity Stats] ---")
-        print(f"- You have {epic_pity_count} wishes since your last " +
+        print(f"- You have {Fore.BLUE}{epic_pity_count}{Fore.RESET} wishes since your last " +
               f"{get_rarity_display(RewardRarity.epic.value)} item.")
-        print(f"- You have {super_rare_pity_count} wishes since your last " +
+        print(f"- You have {Fore.BLUE}{super_rare_pity_count}{Fore.RESET} wishes since your last " +
               f"{get_rarity_display(RewardRarity.super_rare.value)} item.")
 
     def print_probability(self):
@@ -28,9 +28,9 @@ class PityStatsCommand(Command):
         next_super_rare_probability = round_to_decimals(super_rare_weight / total_rarity_weight * 100, 2)
         print("--- [Probabilities] ---")
         print(f"- Probability of an {get_rarity_display(RewardRarity.epic.value)} item on " +
-              f"your next wish is approximately {next_epic_probability}%.")
+              f"your next wish is approximately {Fore.BLUE}{next_epic_probability}%{Fore.RESET}.")
         print(f"- Probability of a {get_rarity_display(RewardRarity.super_rare.value)} item on " +
-              f"your next wish is approximately {next_super_rare_probability}%.")
+              f"your next wish is approximately {Fore.BLUE}{next_super_rare_probability}%{Fore.RESET}.")
         print("--- [Probability Notes] ---")
         print(f"The probabilities of an {get_rarity_display(RewardRarity.epic.value)} item and a "
               + f"{get_rarity_display(RewardRarity.super_rare.value)} item can add up to more than "
