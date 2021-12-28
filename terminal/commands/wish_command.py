@@ -64,7 +64,6 @@ class WishCommand(Command):
             else:
                 rewards_map[reward.name] = reward.quantity
             ProgramContext.user_stats.record_wish(reward)
-            ProgramContext.user_stats.properties[reward.name] += reward.quantity
             print(reward)
             self.wait_for_next_wish()
 
