@@ -1,3 +1,5 @@
+from colorama import Fore
+
 from constants.banner_rules import WISH_WIT_PRICE
 from models.command import Command
 from models.item_name import ItemName
@@ -30,3 +32,6 @@ class BuyCommand(Command):
 
     def execute(self):
         num_purchase = self.get_num_purchase()
+        ProgramContext.user_stats.properties[ItemName.points.value] -= num_purchase * WISH_WIT_PRICE
+        ProgramContext.user_stats.num_wish_wits += num_purchase
+        print(f"{Fore.GREEN}Success! You purchased {num_purchase} wish wits. Good luck!")
